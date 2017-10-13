@@ -1,0 +1,24 @@
+Xft.antialias: true
+Xft.hinting: true
+#Xft.hintstyle: hintslight
+#Xft.lcdfilter: lcdlight
+#Xft.rgba : rgb
+urxvt.font: xft:Inconsolata-10
+#urxvt.font: xft:Inconsolata-8
+#urxvt.font: xft:Inconsolata-12
+#urxvt.font: xft:Inconsolata-20
+#urxvt.font: xft:DroidSansMono-10
+#urxvt.font: xft:Bitstream Vera Sans Mono-8
+urxvt.urgentOnBell: true
+
+
+urxvt.scrollBar: false
+urxvt.saveLines: 8192
+
+urxvt.perl-ext-common: default,matcher
+urxvt.matcher.button: 3
+urxvt.urlLauncher: chromium
+urxvt.underlineurLs: true
+urxvt.background:  #000000
+urxvt.foreground:  #ffffff
+urxvt.jumpScroll: true

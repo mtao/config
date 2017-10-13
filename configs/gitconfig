@@ -1,0 +1,10 @@
+[core]
+	editor = vim
+[user]
+	email = mtao@dgp.toronto.edu
+	name = Michael Tao
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge --skip -- %f
+	process = git-lfs filter-process --skip
