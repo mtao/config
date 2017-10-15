@@ -1,0 +1,12 @@
+
+call plug#begin()
+"Plug 'tpope/vim-sensible'
+Plug 'a.vim'        
+Plug 'taglist.vim'
+Plug 'xoria256.vim'
+"Plug 'OmniCppComplete'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'bling/vim-airline'
+Plug 'scrooloose/syntastic'
+call plug#end()
+

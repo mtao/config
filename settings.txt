@@ -12,16 +12,16 @@
 
 [Vim]
 ~/.vimrc = vimrc
-~/.vim/plugrc = vim_plugrc 
+~/.vim/pluginrc = vim_plugrc 
 ~/.vim/autoload/plug.vim = plug.vim 
 
 [Zsh]
 ~/.oh-my-zsh :git: https://github.com/robbyrussell/oh-my-zsh.git
 ~/.oh-my-zsh/themes/mtao.zsh-theme = mtao.zsh-theme
-~/.zshrc zshrc
+~/.zshrc = zshrc
 
 [Screen]
-~/.screenrc screenrc
+~/.screenrc = screenrc
 
 [MPV]
-~/.config/mpv/mpv.conf mpv.conf
+~/.config/mpv/mpv.conf = mpv.conf
