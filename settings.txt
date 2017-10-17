@@ -3,6 +3,7 @@
 
 [XSession]
 ~/.Xdefaults = Xdefaults 
+~/.xinitrc = xinitrc
 
 [Mercurial]
 ~/.hgrc = hgrc 

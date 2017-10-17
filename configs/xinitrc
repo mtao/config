@@ -1,0 +1,23 @@
+#!/bin/bash
+
+xrandr --dpi 96
+export XDG_CURRENT_DESKTOP=kde
+
+#mountpoint -q $HOME/.cache || mount $HOME/.cache
+#test -d $HOME/.cache/mendeley_dropbox || mkdir -p $HOME/.cache/mendeley_dropbox
+
+nitrogen --restore &
+
+trayer-srg --expand true --transparent true  --alpha 255 --edge top --align right --expand true --SetDockType true --widthtype request --height 15 &
+start-pulseaudio-x11 --log-target=syslog -D
+#xscreensaver -no-splash &
+xset -b &
+
+#dropboxd &
+#gtk-redshift -l 43.664612:-79.403445 &
+#redshift -l 43.643470:-79.391961 &
+
+xsetroot -cursor_name left_ptr &
+xcompmgr -c &
+exec xmonad
+#exec fluxbox
