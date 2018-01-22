@@ -155,3 +155,4 @@ syntax on
 
 
 "autocmd VimEnter * wincmd p
+au BufNewFile,BufRead *.tex set spell
