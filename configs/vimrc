@@ -157,3 +157,4 @@ au BufNewFile,BufRead *.tex set spell
 
 
 "autocmd VimEnter * wincmd p
+au BufNewFile,BufRead *.tex set spell
