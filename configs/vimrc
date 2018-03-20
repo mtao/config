@@ -152,6 +152,8 @@ set foldmethod=syntax
 set foldlevel=20
 set tags=./tags;/
 syntax on
+au BufNewFile,BufRead *.tex set spell
+
 
 
 "autocmd VimEnter * wincmd p
