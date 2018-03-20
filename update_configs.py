@@ -3,6 +3,7 @@
 import sys
 import os
 import shutil
+import difflib
 
 mypath = os.path.dirname(os.path.realpath(__file__))
 default_filename = os.path.join(mypath,"settings.txt")
@@ -13,16 +14,23 @@ class Command:
     update_target = 0
     update_source = 1
     update_noop= 2
-    __update_readable__ = {update_target: "Update Target",
-            update_source: "Update New",
-            update_noop: "Update Neither"}
+    __update_readable__ = {update_target: "Target",
+            update_source: "Source",
+            update_noop: "NoOp"}
 
     def __init__(self, target):
         self.__target__ = target
 
+    def __type_str__(self):
+        raise NotImplementedError
+
+    def diff(self):
+        raise NotImplementedError
+
     def __get_file_age__(filename):
         st = os.stat(os.path.expanduser(filename))
         return st.st_mtime
+
 
     def target_age(self):
         return Command.__get_file_age__(self.__target__)
@@ -37,6 +45,8 @@ class Command:
         return NotImplementedError
 
     def update_style(self):
+        if len(self.diff()) == 0:
+            return self.update_noop
         ta = self.target_age()
         na = self.source_age()
 
@@ -46,25 +56,44 @@ class Command:
             return Command.update_target
         else:
             return Command.update_source
-    def update_readable(updateType):
-        return Command.__update_readable__[updateType]
+    def update_human_readable(self):
+        return Command.__update_readable__[self.update_style()]
+
+
+    def __repr__(self):
+        return "{0}:[{1}],{2}".format(self.__type_str__(),self.__target__,self.update_human_readable())
 
 
 class FileCommand(Command):
+    def __type_str__(self):
+        return "File"
     def __init__(self,target,args):
         super().__init__(target)
         self.__source__ = os.path.join(default_configdir,args[0])
+        #TODO: this only works for text files I think?
+        source_lines = open(os.path.expanduser(self.__source__),"r").readlines()
+        target_lines = open(os.path.expanduser(self.__target__),"r").readlines()
+        self.__diff__ = list(difflib.unified_diff(source_lines,target_lines))
+
+    def diff(self):
+        return self.__diff__
+
 
     def source_age(self):
         return Command.__get_file_age__(self.__source__)
 
 
 class GitCommand(Command):
+    def __type_str__(self):
+        return "Git"
+    def diff(self):
+        return []
     def __init__(self,target,args):
         super().__init__(target)
 
     def source_age(self):
         return -1
+
 
 def make_command(cmd,target,args):
     if cmd == "=":
@@ -88,7 +117,9 @@ class Settings:
     def process(self):
         for cmd in self.__commands__:
             style = cmd.update_style()
-            print(cmd.target(),": [", Command.update_readable(style),"]")
+            print(cmd)
+            if style is not Command.update_noop:
+                print("".join(cmd.diff()))
 
             
 
