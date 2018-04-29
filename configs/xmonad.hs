@@ -9,16 +9,16 @@ import XMonad.Actions.GridSelect
 import XMonad.Layout.NoBorders
 import Graphics.X11.ExtraTypes.XF86
 
---xmain = xmonad $ defaultConfig
+--xmain = xmonad $ def
 --
-main = xmonad =<< dzen (additionalKeys defaultConfig
+main = xmonad =<< dzen (additionalKeys def
     { borderWidth = 1
     , terminal = "urxvtc"
     , normalBorderColor = "#cccccc"
     , focusedBorderColor = "#cd8b00"
-    , layoutHook = smartBorders (avoidStruts $ layoutHook defaultConfig)
-    , manageHook = manageHook defaultConfig <+> manageDocks
-    , startupHook = setWMName "LG3D"
+    , layoutHook = smartBorders (avoidStruts $ layoutHook def)
+    , manageHook = manageHook def <+> manageDocks
+    , startupHook = setWMName "KDE"
     }  myKeys)
 
 myKeys :: [((KeyMask, KeySym), X ())]
