@@ -3,7 +3,9 @@ Xft.hinting: true
 #Xft.hintstyle: hintslight
 #Xft.lcdfilter: lcdlight
 #Xft.rgba : rgb
-urxvt.font: xft:Inconsolata-10
+#urxvt.font: xft:Inconsolata-10
+urxvt.font: xft:Inconsolata for Powerline:size=10
+#xterm.font: xft:Inconsolata-10
 #urxvt.font: xft:Inconsolata-8
 #urxvt.font: xft:Inconsolata-12
 #urxvt.font: xft:Inconsolata-20

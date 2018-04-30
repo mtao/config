@@ -111,19 +111,22 @@ endif
 " Airline
 "-----------------------------------------------------------------------------
 let g:airline_theme = 'bubblegum'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+let g:airline_powerline_fonts = 1
 
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
 
-"    let g:airline_left_sep = ''
-"    let g:airline_left_alt_sep = ''
-"    let g:airline_right_sep = ''
-"    let g:airline_right_alt_sep = ''
-"    let g:airline_symbols.branch = ''
-"    let g:airline_symbols.readonly = ''
-"    let g:airline_symbols.linenr = ''
-"    let g:airline_symbols.paste = 'ρ'
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = ''
+let g:airline_symbols.paste = 'ρ'
 
 
 
@@ -152,6 +155,20 @@ set foldmethod=syntax
 set foldlevel=20
 set tags=./tags;/
 syntax on
+au BufNewFile,BufRead *.tex set spell
+
+
+
+call plug#begin()
+Plug 'Valloric/YouCompleteMe', { 'do' : '~/.vim/plugged/YouCompleteMe/install.py --gocode-completer --rust-completer --clang-completer' }
+Plug 'vim-scripts/a.vim'
+Plug 'vim-scripts/xoria256.vim'
+Plug 'vim-syntastic/syntastic'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'tpope/vim-fugitive'
+
+
+call plug#end()
 
 "autocmd VimEnter * wincmd p
-au BufNewFile,BufRead *.tex set spell

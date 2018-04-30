@@ -1,0 +1,43 @@
+[XMonad]
+src = 'xmonad.hs'
+dest = '~/.xmonad/xmonad.hs'
+
+[XSession]
+src = 'Xdefaults'
+dest = '~/.Xdefaults'
+
+[Mercurial]
+src = 'hgrc'
+dest = '~/.hgrc'
+
+[Git]
+src = 'gitconfig'
+dest = '~/.gitconfig'
+
+[[Vim]]
+src = 'vimrc'
+dest = '~/.vimrc'
+
+[[Vim]]
+src = '~/.vim/autoload/plug.vim'
+dest = 'plug.vim'
+
+[[Zsh]]
+repo = 'https://github.com/robbyrussell/oh-my-zsh.git'
+dest = '~/.oh-my-zsh'
+
+[[Zsh]]
+src = 'zshrc'
+dest = '~/.zshrc'
+
+[[Zsh]]
+src = 'mtao.zsh-theme'
+dest = '~/.oh-my-zsh/themes/mtao.zsh-theme'
+
+[Screen]
+src = 'screenrc'
+dest = '~/.screenrc'
+
+[MPV]
+src = 'mpv.conf'
+dest = '~/.config/mpv/mpv.conf'

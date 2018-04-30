@@ -1,12 +1,11 @@
-
 call plug#begin()
-"Plug 'tpope/vim-sensible'
-Plug 'a.vim'        
-Plug 'taglist.vim'
-Plug 'xoria256.vim'
-"Plug 'OmniCppComplete'
+Plug 'Valloric/YouCompleteMe', { 'do' : '~/.vim/plugged/YouCompleteMe/install.py --gocode-completer --rust-completer --clang-completer' }
+Plug 'vim-scripts/a.vim'
+Plug 'vim-scripts/xoria256.vim'
+Plug 'vim-syntastic/syntastic'
+Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'bling/vim-airline'
-Plug 'scrooloose/syntastic'
-call plug#end()
+Plug 'tpope/vim-fugitive'
 
+
+call plug#end()
