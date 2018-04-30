@@ -1,22 +1,30 @@
-[XMonad]
+[[XMonad]]
 src = 'xmonad.hs'
 dest = '~/.xmonad/xmonad.hs'
 
-[XSession]
+[[XSession]]
 src = 'Xdefaults'
 dest = '~/.Xdefaults'
 
-[Mercurial]
+[[XSession]]
+src = 'xinitrc'
+dest = '~/.xinitrc'
+
+[[Mercurial]]
 src = 'hgrc'
 dest = '~/.hgrc'
 
-[Git]
+[[Git]]
 src = 'gitconfig'
 dest = '~/.gitconfig'
 
 [[Vim]]
 src = 'vimrc'
 dest = '~/.vimrc'
+
+[[Vim]]
+src = 'vim_plugrc'
+dest = '~/.vim/plugrc'
 
 [[Vim]]
 src = '~/.vim/autoload/plug.vim'
@@ -34,10 +42,10 @@ dest = '~/.zshrc'
 src = 'mtao.zsh-theme'
 dest = '~/.oh-my-zsh/themes/mtao.zsh-theme'
 
-[Screen]
+[[Screen]]
 src = 'screenrc'
 dest = '~/.screenrc'
 
-[MPV]
+[[MPV]]
 src = 'mpv.conf'
 dest = '~/.config/mpv/mpv.conf'
