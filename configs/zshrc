@@ -88,6 +88,9 @@ alias chromium-dev="chromium --user-data-dir='~/.config/chromium-dev'"
 alias copy="rsync -ahP" #doesn't need z because local compression would be wasteful
 alias scopy="rsync -azhP"
 
+#Allow for Eigen to work in most autocomplete mechanisms
+export CPLUS_INCLUDE_PATH="CPLUS_INCLUDE_PATH:/usr/include/eigen3"
+
 #test -d $HOME/.cache/mendeley_dropbox || mkdir -p $HOME/.cache/mendeley_dropbox
 
 #export PYTHONPATH="/usr/local/python/lib/python2.7/"
