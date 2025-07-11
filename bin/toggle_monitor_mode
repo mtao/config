@@ -1,0 +1,40 @@
+#!/bin/bash
+
+
+
+MONITORS=$( hyprctl monitors all -j )
+
+detect_monitor() {
+        echo $MONITORS | jq --arg SERIAL "$2" --arg MODEL "$1" '.[] | select( .serial == $SERIAL and .model == $MODEL )'
+}
+
+get_name() {
+    echo "$1" | jq -r '.name'
+}
+
+left=$( detect_monitor 27GN950 111NTHMH2169 )
+right=$( detect_monitor "LG HDR 4K" 0x00023298 )
+
+
+if [[ -n "$left" ]] then
+    left_name=$( get_name "$left" )
+    hyprctl notify -1 1000 "rgb(ff0000)" "Left Display found $left_name"
+fi
+if [[ -n "$right" ]] then
+    right_name=$( get_name "$right" )
+hyprctl notify -1 1000 "rgb(ff0000)" "Right display found $right_name"
+fi
+
+
+. ~/.local/venv/bin/activate
+
+pushd ~/.config/hypr/config.d
+if [[  -n "$left"  &&  -n "$right"  ]]
+then
+    hyprctl notify -1 1000 "rgb(ff0000)" "Both monitors detected, all is well"
+    #cp monitors_office.conf monitors.conf
+
+else
+    hyprctl notify -1 1000 "rgb(ff0000)" "Monitor missing"
+
+fi

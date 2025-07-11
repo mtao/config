@@ -1,0 +1,4 @@
+#!/bin/zsh
+
+export GRIM_DEFAULT_DIR=~/Pictures/Screenshots
+grim -g "$(slurp)"

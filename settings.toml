@@ -1,34 +1,21 @@
-[[XMonad]]
-src = 'xmonad.hs'
-dest = '~/.xmonad/xmonad.hs'
-
 [[XSession]]
 src = 'Xdefaults'
-dest = '~/.Xdefaults'
+type = 'dotfile'
 
 [[XSession]]
 src = 'xinitrc'
-dest = '~/.xinitrc'
+type = 'dotfile'
 
 [[Mercurial]]
 src = 'hgrc'
-dest = '~/.hgrc'
+type = 'dotfile'
 
 [[Git]]
 src = 'gitconfig'
-dest = '~/.gitconfig'
+type = 'dotfile'
 
-[[Vim]]
-src = 'vimrc'
-dest = '~/.vimrc'
-
-[[Vim]]
-src = 'vim_plugrc'
-dest = '~/.vim/plugrc'
-
-[[Vim]]
-src = '~/.vim/autoload/plug.vim'
-dest = 'plug.vim'
+[[NVim]]
+src = 'nvim' # default 
 
 [[Zsh]]
 repo = 'https://github.com/robbyrussell/oh-my-zsh.git'
@@ -36,16 +23,22 @@ dest = '~/.oh-my-zsh'
 
 [[Zsh]]
 src = 'zshrc'
-dest = '~/.zshrc'
-
-[[Zsh]]
-src = 'mtao.zsh-theme'
-dest = '~/.oh-my-zsh/themes/mtao.zsh-theme'
-
-[[Screen]]
-src = 'screenrc'
-dest = '~/.screenrc'
+type = 'dotfile'
 
 [[MPV]]
-src = 'mpv.conf'
-dest = '~/.config/mpv/mpv.conf'
+src = 'mpv'
+
+[[TMux]]
+src = 'tmux'
+
+[[Hypr]]
+src = 'hypr'
+
+[[Waybar]]
+src = 'waybar'
+
+[[Wezterm]]
+src = 'wezterm'
+
+[[Mako]]
+src = 'mako'

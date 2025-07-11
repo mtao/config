@@ -1,0 +1,20 @@
+#!/bin/bash
+sources=$( pw-dump |jq '.[] | select(.type == "PipeWire:Interface:Node") | .info.props | select(."media.class" == "Audio/Sink")')
+
+default_name=$( pw-dump | jq -r '.[] | select(.type == "PipeWire:Interface:Metadata" and .props."metadata.name" == "default") | .metadata[] | select(.key == "default.audio.sink") | .value.name' )
+
+current_sink=$( echo $sources | jq --arg DEFAULT_NAME $default_name 'select(."node.name" == $DEFAULT_NAME) | ."object.id"' )
+
+readarray ids < <(echo $sources | jq '."object.id"' )
+
+for i in "${!ids[@]}"; do 
+    if [[ "${ids[$i]}" -eq "${current_sink}" ]]
+        then
+        let "active_index = (${i} + 1) % ${#ids[@]}"
+    fi
+done
+active=${ids[$active_index]}
+
+wpctl set-default $active
+active_nick=$( echo $sources | jq -r --argjson active $active 'select( ."object.id" == $active ) | ."node.description"' )
+hyprctl notify 1 2000 "rgb(ff1ea3)" "Wireplumber default set to [$active_nick]"
