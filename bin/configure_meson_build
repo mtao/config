@@ -17,6 +17,7 @@ function run() {
     pushd $build_folder
     meson setup --native-file conan/conan_meson_native.ini .. .
     ninja # build
+    popd
 }
 
 
