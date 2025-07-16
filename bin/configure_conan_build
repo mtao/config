@@ -1,5 +1,14 @@
 #!/bin/bash
 
+function init_cmake() {
+    cat $( conan profile path "$1" ) | grep build_type | tr "=" " " | awk '{ print $2 }'
+    cmake .. -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake
+
+}
+
+function init_meson() {
+    meson setup --native-file conan/conan_meson_native.ini .. .
+}
 
 function run() {
     #takes as input a single arg that is the meson profile name. otherwise it uses the default one
@@ -14,8 +23,13 @@ function run() {
 
     mkdir -p $build_folder
     conan install . --output-folder=$build_folder/conan --build=missing --profile=$conan_profile
+
+    if [ -f meson.build ] then
+
+
     pushd $build_folder
-    meson setup --native-file conan/conan_meson_native.ini .. .
+
+
     ninja # build
     popd
 }
@@ -23,5 +37,4 @@ function run() {
 
 for profile in $@; do
     run "$profile"
-
 done
