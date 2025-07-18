@@ -1,35 +1,60 @@
 #!/bin/bash
 
-function init_cmake() {
-    cat $( conan profile path "$1" ) | grep build_type | tr "=" " " | awk '{ print $2 }'
-    cmake .. -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake
+# configures a build folder using mtao's default settings
+# if conan is present then the profile chosen is the conan profile, otherwise it's the build system's profile type
 
+
+if [ -f conanfile.txt || -f conanfile.txt ]
+then
+    echo "Found conan"
+    USE_CONAN=1
+else
+    USE_CONAN=0
+fi
+
+
+function init_cmake() {
+    if USE_CONAN; then
+        CONAN_CMD="-DCMAKE_TOOLCHAIN_FILE=conan/conan_toolchain.cmake"
+        BUILD_TYPE=$( cat $( conan profile path "$1" ) | grep build_type | tr "=" " " | awk '{ print $2 }' )
+    else
+        BUILD_TYPE="$1"
+        CONAN_CMD=""
+    fi
+    cmake ..  $CONAN_CMD -GNinja -DCPM_SOURCE_CACHE=~/.local/cpm -DCMAKE_BUILD_TYPE=$BUILD_TYPE
 }
 
 function init_meson() {
-    meson setup --native-file conan/conan_meson_native.ini .. .
+    if USE_CONAN; then
+        CONAN_CMD="--native-file conan/conan_meson_native.ini"
+    else
+        CONAN_CMD=""
+    fi
+    meson setup $CONAN_CMD .. .
 }
 
 function run() {
     #takes as input a single arg that is the meson profile name. otherwise it uses the default one
     profile=${1}
-    if [[ -n "$profile" ]]; then
-        conan_profile=$profile
-        build_folder=build-$profile
-    else
-        conan_profile=default
-        build_folder=build
-    fi
+    build_folder=build-$profile
 
     mkdir -p $build_folder
-    conan install . --output-folder=$build_folder/conan --build=missing --profile=$conan_profile
 
-    if [ -f meson.build ] then
-
+    if USE_CONAN; then
+    conan install . --output-folder=$build_folder/conan --build=missing --profile=$profile
+    fi
 
     pushd $build_folder
 
+    if [ -f meson.build ] then
+        init_meson
+    elif [ -f CMakeLists.txt ] then
+        init_cmake
 
+    else
+        echo "Unable to find meson.build or CMakeLists.txt, exiting"
+        exit 1
+    fi
     ninja # build
     popd
 }
